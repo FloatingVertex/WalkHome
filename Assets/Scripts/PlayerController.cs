@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 
     public KeyCode leftKey = KeyCode.A;
     public KeyCode rightKey = KeyCode.D;
+    public KeyCode jumpKey = KeyCode.Space;
 
     private void Update()
     {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
         {
             movement += 1;
         }
+        GetComponent<Character>().jump = Input.GetKey(jumpKey);
         GetComponent<Character>().Movement = movement;
     }
 }
