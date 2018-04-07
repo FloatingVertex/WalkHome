@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c79853143754df4bb02d0f912d3d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveFactor: 100
+  moveFactor: 200
   maxSpeed: 10
-  horizontalDrag: 0.1
+  horizontalDrag: 1
 --- !u!212 &76447539
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ Prefab:
     - target: {fileID: 114162878691244336, guid: c83228d5bbd5b0548926cea1c61157fa,
         type: 2}
       propertyPath: moveFactor
-      value: 3000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114162878691244336, guid: c83228d5bbd5b0548926cea1c61157fa,
         type: 2}
@@ -318,7 +318,7 @@ Prefab:
     - target: {fileID: 114162878691244336, guid: c83228d5bbd5b0548926cea1c61157fa,
         type: 2}
       propertyPath: horizontalDrag
-      value: 0.26
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c83228d5bbd5b0548926cea1c61157fa, type: 2}
