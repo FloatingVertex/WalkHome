@@ -7,10 +7,6 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float moveFactor = 1;
 
-
-    [SerializeField]
-    private float maxSpeed = 2;
-
     [SerializeField]
     private float horizontalDrag = .1f;
 
@@ -34,7 +30,6 @@ public class Character : MonoBehaviour
         float finalVelocityX = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * c));
         rb.velocity = new Vector2(finalVelocityX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
         rb.AddForce(Vector2.right * moveFactor * movingState);
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
     public int Movement

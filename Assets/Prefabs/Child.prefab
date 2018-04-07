@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114655385109006702}
   - component: {fileID: 50816587618164086}
   - component: {fileID: 58241231046263030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Child
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.1
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -103,9 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c79853143754df4bb02d0f912d3d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveFactor: 500
-  maxSpeed: 10
-  horizontalDrag: 30
+  moveFactor: 350
+  horizontalDrag: 45
 --- !u!212 &212496133288724180
 SpriteRenderer:
   m_ObjectHideFlags: 1
