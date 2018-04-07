@@ -18,7 +18,7 @@ public class AiController : MonoBehaviour
 	void Start ()
     {
         charBody = GetComponent<Character>();
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), leader.GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), leader.GetComponent<Collider2D>());
 	}
 	
 	// Update is called once per frame
@@ -29,6 +29,7 @@ public class AiController : MonoBehaviour
         {
             CalcSteer();
         }
+        //charBody.Movement = -1;
     }
 
     // if NPC needs to move towards the player/its target, calculate which direction it should move
