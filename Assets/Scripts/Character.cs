@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     {
 		
 	}
+
     private void FixedUpdate()
     {
         float c = -1f / rb.velocity.x;
@@ -41,8 +42,7 @@ public class Character : MonoBehaviour
         get { return movingState; }
         set
         {
-            movingState = value;
-            movingState = Mathf.Clamp(movingState, -1, 1);
+            movingState = Mathf.Clamp(value, -1, 1);
         }
     }
 
