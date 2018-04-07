@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c79853143754df4bb02d0f912d3d002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveFactor: 200
-  horizontalDrag: 0.1
+  moveFactor: 500
+  horizontalDrag: 50
 --- !u!114 &114619662127114548
 MonoBehaviour:
   m_ObjectHideFlags: 1
