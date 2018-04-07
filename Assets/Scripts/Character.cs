@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     private int movingState = 0;
     [HideInInspector]
     public bool jump = false;
-    private bool touchingGround;
+    private bool touchingGround = false;
 
     private int climbState = 0;
     public int ClimbState
@@ -60,7 +60,7 @@ public class Character : MonoBehaviour
 		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         touchingGround = true;
     }

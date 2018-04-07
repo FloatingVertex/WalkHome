@@ -7,7 +7,7 @@ public class Slide : MonoBehaviour {
     {
         if(collision.GetComponent<Character>())
         {
-            collision.GetComponent<Character>().tempMoveSpeedMultiple = 0f;
+            collision.GetComponent<Character>().tempMoveSpeedMultiple = 0.1f;
             collision.GetComponent<Character>().tempDragMultiple = 0f;
         }
     }
