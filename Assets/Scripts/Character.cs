@@ -8,6 +8,12 @@ public class Character : MonoBehaviour
     private float moveFactor = 1;
 
     [SerializeField]
+    private float climbFactor = 1;
+
+    [SerializeField]
+    private string climbableTag = "ClimbableArea";
+
+    [SerializeField]
     private float horizontalDrag = .1f;
 
     [SerializeField]
@@ -20,6 +26,18 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public bool jump = false;
     private bool touchingGround;
+
+    private int climbState = 0;
+    public int ClimbState
+    {
+        get { return climbState; }
+        set
+        {
+            climbState = Mathf.Clamp(value, -1, 1);
+        }
+    }
+    private bool inClimbableArea = false;
+
     private int lastJump = 0;
     private Rigidbody2D rb = null;
 	// Use this for initialization
@@ -36,17 +54,29 @@ public class Character : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == groundTag)
-        {
-            touchingGround = true;
-        }
+        touchingGround = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == groundTag)
+        touchingGround = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == climbableTag)
         {
-            touchingGround = false;
+            inClimbableArea = true;
+            rb.gravityScale = 0f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == climbableTag)
+        {
+            inClimbableArea = false;
+            rb.gravityScale = 1f;
         }
     }
 
@@ -56,7 +86,9 @@ public class Character : MonoBehaviour
         float finalVelocityX = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * c));
         rb.velocity = new Vector2(finalVelocityX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
         rb.AddForce(Vector2.right * moveFactor * movingState);
-        if (jump && touchingGround && lastJump > 5)
+
+        //handle jumping
+        if (jump && touchingGround && lastJump > 4)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             lastJump = 0;
@@ -64,6 +96,15 @@ public class Character : MonoBehaviour
         else
         {
             lastJump++;
+        }
+
+        //handle climbing
+        if(inClimbableArea)
+        {
+            float cy = -1f / Mathf.Abs(rb.velocity.y);
+            float finalVelocityY = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * cy));
+            rb.velocity = new Vector2(rb.velocity.x,finalVelocityY * Mathf.Sign(rb.velocity.y));
+            rb.AddForce(Vector2.up * climbFactor * climbState);
         }
     }
 

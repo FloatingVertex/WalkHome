@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveFactor: 500
+  climbFactor: 500
+  climbableTag: ClimbableArea
   horizontalDrag: 50
   jumpForce: 10
   groundTag: TileMap
@@ -108,6 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftKey: 97
   rightKey: 100
+  climbUpKey: 119
+  climbDownKey: 115
   jumpKey: 32
 --- !u!212 &212591375384662958
 SpriteRenderer:
