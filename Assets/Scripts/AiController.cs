@@ -25,16 +25,13 @@ public class AiController : MonoBehaviour
 	void Update ()
     {
         distance = leader.transform.position - transform.position;
-        if (distance.sqrMagnitude > Mathf.Pow(safeDistance, 2))
-        {
-            CalcSteer();
-        }
+        CalcSteer();
         //charBody.Movement = -1;
     }
 
     // if NPC needs to move towards the player/its target, calculate which direction it should move
     void CalcSteer()
     {
-        charBody.Movement = (int)Vector2.Dot(distance, Vector2.right);
+        charBody.Movement = Mathf.RoundToInt(Vector2.Dot(distance, Vector2.right)/safeDistance);
     }
 }

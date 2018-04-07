@@ -32,9 +32,9 @@ public class Character : MonoBehaviour
     {
         float c = -1f / Mathf.Abs(rb.velocity.x);
         float finalVelocityX = -rb.mass / ((horizontalDrag * Time.fixedDeltaTime) + (rb.mass * c));
-        rb.velocity = new Vector2(finalVelocityX*-Mathf.Sin(rb.velocity.x), rb.velocity.y);
+        rb.velocity = new Vector2(finalVelocityX * -Mathf.Sin(rb.velocity.x), rb.velocity.y);
         rb.AddForce(Vector2.right * moveFactor * movingState);
-        Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
     public int Movement
