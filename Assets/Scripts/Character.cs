@@ -40,6 +40,14 @@ public class Character : MonoBehaviour
 
     private int lastJump = 0;
     private Rigidbody2D rb = null;
+
+    [HideInInspector]
+    public float tempDragMultiple = 1f;
+    [HideInInspector]
+    public float tempMoveSpeedMultiple = 1f;
+    [HideInInspector]
+    public float tempJumpForceMultiple = 1f;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -83,14 +91,14 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         float c = -1f / Mathf.Abs(rb.velocity.x);
-        float finalVelocityX = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * c));
+        float finalVelocityX = -rb.mass / ((-horizontalDrag * tempDragMultiple * Time.fixedDeltaTime) + (rb.mass * c));
         rb.velocity = new Vector2(finalVelocityX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
-        rb.AddForce(Vector2.right * moveFactor * movingState);
+        rb.AddForce(Vector2.right * moveFactor * tempMoveSpeedMultiple * movingState);
 
         //handle jumping
         if (jump && touchingGround && lastJump > 4)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce * tempJumpForceMultiple, ForceMode2D.Impulse);
             lastJump = 0;
         }
         else
@@ -102,7 +110,7 @@ public class Character : MonoBehaviour
         if(inClimbableArea)
         {
             float cy = -1f / Mathf.Abs(rb.velocity.y);
-            float finalVelocityY = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * cy));
+            float finalVelocityY = -rb.mass / ((-horizontalDrag * tempDragMultiple * Time.fixedDeltaTime) + (rb.mass * cy));
             rb.velocity = new Vector2(rb.velocity.x,finalVelocityY * Mathf.Sign(rb.velocity.y));
             rb.AddForce(Vector2.up * climbFactor * climbState);
         }
