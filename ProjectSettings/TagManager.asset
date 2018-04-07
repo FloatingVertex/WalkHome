@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TileMap
+  - ClimbableArea
   layers:
   - Default
   - TransparentFX

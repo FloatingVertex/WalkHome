@@ -10,6 +10,9 @@ public class AiController : MonoBehaviour
     [SerializeField]
     private float safeDistance = 5.0f;
 
+    [SerializeField]
+    private string groundTag = "TileMap";
+
     private Vector2 distance = Vector2.zero;
 
     private Character charBody = null;
@@ -20,9 +23,25 @@ public class AiController : MonoBehaviour
         charBody = GetComponent<Character>();
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), leader.GetComponent<Collider2D>());
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == groundTag)
+        {
+            bool climb_jump = false;
+            foreach (var contact in collision.contacts)
+            {
+                if (Vector2.Dot(contact.normal, Vector2.up) < 0.2f)
+                {
+                    climb_jump = true;
+                }
+            }
+            GetComponent<Character>().jump = climb_jump;
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         distance = leader.transform.position - transform.position;
         CalcSteer();

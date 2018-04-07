@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938135577625876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3481297, y: -2.7301478, z: -0.21743898}
+  m_LocalPosition: {x: -6.47, y: -2.4480388, z: -0.21743898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leader: {fileID: 0}
   safeDistance: 2
+  groundTag: TileMap
 --- !u!114 &114896466752358098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,7 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveFactor: 350
+  climbFactor: 1
+  climbableTag: ClimbableArea
   horizontalDrag: 45
+  jumpForce: 10
+  groundTag: TileMap
+  jump: 0
 --- !u!212 &212496133288724180
 SpriteRenderer:
   m_ObjectHideFlags: 1
