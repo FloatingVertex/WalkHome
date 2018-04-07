@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public bool jump = false;
     private bool touchingGround;
+    private int lastJump = 0;
     private Rigidbody2D rb = null;
 	// Use this for initialization
 	void Start ()
@@ -55,7 +56,15 @@ public class Character : MonoBehaviour
         float finalVelocityX = -rb.mass / ((-horizontalDrag * Time.fixedDeltaTime) + (rb.mass * c));
         rb.velocity = new Vector2(finalVelocityX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
         rb.AddForce(Vector2.right * moveFactor * movingState);
-        if (jump && touchingGround) rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (jump && touchingGround && lastJump > 5)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            lastJump = 0;
+        }
+        else
+        {
+            lastJump++;
+        }
     }
 
     public int Movement

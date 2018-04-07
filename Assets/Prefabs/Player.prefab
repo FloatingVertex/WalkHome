@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveFactor: 500
   horizontalDrag: 50
-  jumpForce: 5
+  jumpForce: 10
   groundTag: TileMap
   jump: 0
 --- !u!114 &114619662127114548
