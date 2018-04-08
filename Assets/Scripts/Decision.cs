@@ -24,11 +24,12 @@ public class Decision : MonoBehaviour
     {
         menu = GameObject.Find("MenuGroup");
         promptLabel = GameObject.Find("PromptText").GetComponent<Text>();
-        yesButton = 
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        yesButton = GameObject.Find("YesButton").GetComponent<Button>();
+        noButton = GameObject.Find("NoButton").GetComponent<Button>();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
 		
 	}

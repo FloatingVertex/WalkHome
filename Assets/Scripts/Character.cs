@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public static bool inCutScene = false;
+
     [SerializeField]
     private float moveFactor = 1;
 
@@ -22,6 +24,15 @@ public class Character : MonoBehaviour
     //[SerializeField]
     //private string groundTag = "TileMap";
 
+    private float fatigueLevel = 0;
+    [SerializeField]
+    private float fatigueTimer;
+
+    public float Fatigue
+    {
+        get { return fatigueLevel; }
+        set { fatigueLevel = value; }
+    }
     private int movingState = 0;
     [HideInInspector]
     public bool jump = false;
@@ -90,6 +101,10 @@ public class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(inCutScene) // if in a cutscene/dialogue, don't move
+        {
+            return;
+        }
         float c = -1f / Mathf.Abs(rb.velocity.x);
         float finalVelocityX = -rb.mass / ((-horizontalDrag * tempDragMultiple * Time.fixedDeltaTime) + (rb.mass * c));
         rb.velocity = new Vector2(finalVelocityX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
