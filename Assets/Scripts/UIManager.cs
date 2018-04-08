@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [System.Serializable]
 public struct Message
 {
+    [SerializeField]
+    [TextArea(3, 12)]
     public string text;
     public bool hasDecision;
     public Decision choice;

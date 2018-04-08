@@ -23,10 +23,11 @@ public class Character : MonoBehaviour
 
     //[SerializeField]
     //private string groundTag = "TileMap";
-
+    
+    [SerializeField]
     private float fatigueLevel = 0;
     [SerializeField]
-    private float fatigueTimer;
+    private float fatigueTimer = 300;
 
     public float Fatigue
     {
@@ -35,6 +36,16 @@ public class Character : MonoBehaviour
     }
 
     private int movingState = 0;
+
+    public int Movement
+    {
+        get { return movingState; }
+        set
+        {
+            movingState = Mathf.Clamp(value, -1, 1);
+        }
+    }
+
     [HideInInspector]
     public bool jump = false;
     private bool touchingGround = false;
@@ -132,13 +143,12 @@ public class Character : MonoBehaviour
         }
     }
 
-    public int Movement
+    public float GetFatigueRatio()
     {
-        get { return movingState; }
-        set
-        {
-            movingState = Mathf.Clamp(value, -1, 1);
-        }
+        return fatigueLevel / fatigueTimer;
     }
-
+    public void ChangeEnergy(int level)
+    {
+        fatigueLevel += level;
+    }
 }

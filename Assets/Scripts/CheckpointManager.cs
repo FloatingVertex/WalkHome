@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public class CheckpointManager : MonoBehaviour
 {
     private List<GameObject> objectsToReset = new List<GameObject>();
 
     private Vector2 currentCheckpoint;
     private GameObject player;
+    private GameObject kid;
 	// Use this for initialization
 	void Start ()
     {
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
+        player = GameObject.Find("Player");
+        kid = GameObject.Find("Child");
 	}
 
     public void ResetToCheckPoint()
@@ -28,16 +25,20 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    public void RegisterObject(GameObject obj)
+    public void RegisterObject(EventTrigger trg)
     {
-        objectsToReset.Add(obj);
+        objectsToReset.Add(trg.gameObject);
     }
 
     // TODO: Set up a CP Trigger script to call this method, attach it to the checkpoint
-    public void RegisterCheckpoint(GameObject plyr)
+    public void RegisterCheckpoint()
     {
-        currentCheckpoint = plyr.transform.position;
-        player = plyr;
+        currentCheckpoint = player.transform.position;
         objectsToReset = new List<GameObject>(); // clear the list of objs to reset
+    }
+
+    public static CheckpointManager GetManager()
+    {
+        return GameObject.Find("EventSystem").GetComponent<CheckpointManager>();
     }
 }
