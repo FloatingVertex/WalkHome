@@ -33,14 +33,22 @@ public class Decision : EventTrigger
 
     public override void RunTrigger()
     {
-        yesButton.onClick.RemoveAllListeners();
-        noButton.onClick.RemoveAllListeners();
+        
+        
         menu.SetActive(true);
         promptLabel.text = prompt;
-        yesButton.onClick.AddListener(yesTrigger.RunTrigger);
-        yesButton.onClick.AddListener(Hide);
-        noButton.onClick.AddListener(noTrigger.RunTrigger);
-        noButton.onClick.AddListener(Hide);
+        if (yesTrigger != null)
+        {
+            yesButton.onClick.RemoveAllListeners();
+            yesButton.onClick.AddListener(yesTrigger.RunTrigger);
+            yesButton.onClick.AddListener(Hide);
+        }
+        if (noTrigger != null)
+        {
+            noButton.onClick.RemoveAllListeners();
+            noButton.onClick.AddListener(noTrigger.RunTrigger);
+            noButton.onClick.AddListener(Hide);
+        }
     }
 
     void Hide()

@@ -13,7 +13,7 @@ public class CheckpointManager : MonoBehaviour
 	void Start ()
     {
         player = GameObject.Find("Player");
-        kid = GameObject.Find("Child");
+        kid = GameObject.Find("Child (1)");
 	}
 
     public void ResetToCheckPoint()

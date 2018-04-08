@@ -79,4 +79,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredFlag: None
   requiredTag: None
+  triggerType: 1
   attachedEvent: {fileID: 0}

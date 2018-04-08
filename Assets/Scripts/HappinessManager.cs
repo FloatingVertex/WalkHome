@@ -8,6 +8,15 @@ public class HappinessManager : MonoBehaviour {
 
     public int happyness = 2;
 
+    private void Awake()
+    {
+        if(singleton != null)
+        {
+            Debug.LogError("Multiple happiness managers");
+        }
+        singleton = this;
+    }
+
     public static void EventHappened(int deltaHappiness,float deltaEnergy)
     {
         singleton.happyness += deltaHappiness;
