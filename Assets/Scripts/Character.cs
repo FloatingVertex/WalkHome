@@ -16,24 +16,13 @@ public class Character : MonoBehaviour
     private string climbableTag = "ClimbableArea";
 
     [SerializeField]
-    private float horizontalDrag = .1f;
+    public float horizontalDrag = .1f;
 
     [SerializeField]
     private float jumpForce = .1f;
 
     //[SerializeField]
     //private string groundTag = "TileMap";
-    
-    [SerializeField]
-    private float fatigueLevel = 0;
-    [SerializeField]
-    private float fatigueTimer = 300;
-
-    public float Fatigue
-    {
-        get { return fatigueLevel; }
-        set { fatigueLevel = value; }
-    }
 
     private int movingState = 0;
 
@@ -141,14 +130,5 @@ public class Character : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x,finalVelocityY * Mathf.Sign(rb.velocity.y));
             rb.AddForce(Vector2.up * climbFactor * climbState);
         }
-    }
-
-    public float GetFatigueRatio()
-    {
-        return fatigueLevel / fatigueTimer;
-    }
-    public void ChangeEnergy(int level)
-    {
-        fatigueLevel += level;
     }
 }
