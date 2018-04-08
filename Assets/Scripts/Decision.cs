@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Decision : EventTrigger
 {
@@ -37,7 +38,9 @@ public class Decision : EventTrigger
         menu.SetActive(true);
         promptLabel.text = prompt;
         yesButton.onClick.AddListener(yesTrigger.RunTrigger);
+        yesButton.onClick.AddListener(Hide);
         noButton.onClick.AddListener(noTrigger.RunTrigger);
+        noButton.onClick.AddListener(Hide);
     }
 
     void Hide()

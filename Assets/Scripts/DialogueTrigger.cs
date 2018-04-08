@@ -14,8 +14,8 @@ public class DialogueTrigger : EventTrigger
     [SerializeField]
     private List<Message> script = new List<Message>();
 
-    [SerializeField]
-    private EventTrigger hasEvent;
+    //[SerializeField]
+    //private EventTrigger hasEvent;
     UIManager manager;
 	// Use this for initialization
 	void Start ()

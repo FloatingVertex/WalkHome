@@ -10,18 +10,18 @@ public struct Message
     [SerializeField]
     [TextArea(3, 12)]
     public string text;
-    public bool hasDecision;
-    public Decision choice;
+    public bool hasEvent;
+    public EventTrigger choice;
     public Message(string txt)
     {
         text = txt;
-        hasDecision = false;
+        hasEvent = false;
         choice = null;
     }
-    public Message(string txt, Decision chc)
+    public Message(string txt, EventTrigger chc)
     {
         text = txt;
-        hasDecision = true;
+        hasEvent = true;
         choice = chc;
     }
 }
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
         panel.SetActive(false);
         bool active = panel.activeInHierarchy;
         IsDisplaying = false;
-        
+        GameObject.Find("MenuGroup").SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -65,12 +65,20 @@ public class UIManager : MonoBehaviour
             {
                 if (msgQueue.Count > 0)
                 {
+                    if (currentMsg.hasEvent && !(currentMsg.choice is Decision))
+                    {
+                        currentMsg.choice.RunTrigger();
+                    }
                     currentMsg = msgQueue.Dequeue();
                     MessageSetup(currentMsg);
                 }
                 else
                 {
                     IsDisplaying = false;
+                    if (currentMsg.hasEvent)
+                    {
+                        currentMsg.choice.RunTrigger();
+                    }
                 }
                 waitingForInput = false;
             }
