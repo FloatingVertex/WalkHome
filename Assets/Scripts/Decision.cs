@@ -47,9 +47,4 @@ public class Decision : EventTrigger
     {
         menu.SetActive(false);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        RunTrigger();
-    }
 }

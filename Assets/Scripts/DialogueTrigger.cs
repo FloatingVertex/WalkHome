@@ -5,9 +5,6 @@ using UnityEngine;
 public class DialogueTrigger : EventTrigger
 {
     [SerializeField]
-    private string layerTag;
-
-    [SerializeField]
     [TextArea(3,12)]
     private string line = "Use this box to make sure a line looks right before you put it into the Script.";
 
@@ -29,14 +26,7 @@ public class DialogueTrigger : EventTrigger
         {
             manager.CreateMessage(msg);
         }
-        CheckpointManager.GetManager().RegisterObject(this);
+        CheckpointManager.GetManager().RegisterObject(gameObject);
         gameObject.SetActive(false);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(layerTag))
-        {
-            RunTrigger();
-        }
     }
 }

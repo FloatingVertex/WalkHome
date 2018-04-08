@@ -23,7 +23,7 @@ public class GameplayFlags : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+
 	}
 
     public void ToggleFlag(string flg)
@@ -34,6 +34,11 @@ public class GameplayFlags : MonoBehaviour
     public bool GetFlag(string flg)
     {
         return flagTracker[flg];
+    }
+
+    public bool Contains(string flg)
+    {
+        return flagTracker.ContainsKey(flg);
     }
 
     public static GameplayFlags GetManager()

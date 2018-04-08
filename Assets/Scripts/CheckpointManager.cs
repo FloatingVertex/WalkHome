@@ -22,13 +22,13 @@ public class CheckpointManager : MonoBehaviour
         kid.transform.position = currentCheckpoint;
         foreach(GameObject obj in objectsToReset)
         {
-            obj.SetActive(!obj.activeInHierarchy);
+            obj.gameObject.SetActive(true);
         }
     }
 
-    public void RegisterObject(EventTrigger trg)
+    public void RegisterObject(GameObject obj)
     {
-        objectsToReset.Add(trg.gameObject);
+        objectsToReset.Add(obj);
     }
 
     // TODO: Set up a CP Trigger script to call this method, attach it to the checkpoint

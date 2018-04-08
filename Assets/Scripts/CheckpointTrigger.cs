@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckpointTrigger : EventTrigger
 {
     [SerializeField]
-    private bool isKillBox = false;
+    private bool killPlayer = false;
     private CheckpointManager cpManager;
 	// Use this for initialization
 	void Start ()
@@ -15,7 +15,7 @@ public class CheckpointTrigger : EventTrigger
 
     public override void RunTrigger()
     {
-        if (isKillBox)
+        if (killPlayer)
         {
             cpManager.ResetToCheckPoint();
         }
@@ -24,12 +24,4 @@ public class CheckpointTrigger : EventTrigger
             cpManager.RegisterCheckpoint();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 8)
-        {
-            RunTrigger();
-        }
-    }
-
 }
