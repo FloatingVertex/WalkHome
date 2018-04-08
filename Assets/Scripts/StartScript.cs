@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class StartScript : MonoBehaviour
 {
     [SerializeField]
-    private string sceneName = "";
+    private int sceneId = 1;
 	
     public void StartGame()
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneId, LoadSceneMode.Single);
     }
 
     public void ExitGame()

@@ -20,7 +20,7 @@ public class BouncyPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.layer == 8) || (collision.gameObject.layer == 9))
+        if ((collision.gameObject.layer == 8) || (collision.gameObject.layer == 9 || collision.gameObject.layer == 10))
         {
             Debug.Log(Vector2.Dot(collision.contacts[0].normal, Vector2.down));
             if (Vector2.Dot(collision.contacts[0].normal, Vector2.down) > 0)
