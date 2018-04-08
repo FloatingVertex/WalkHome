@@ -7,6 +7,6 @@ public class GoToCredits : EventTrigger
 {
     public override void RunTrigger()
     {
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 }
