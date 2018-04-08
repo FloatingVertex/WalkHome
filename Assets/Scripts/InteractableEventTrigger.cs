@@ -17,7 +17,7 @@ public class InteractableEventTrigger : EventTrigger {
 
     public override void RunTrigger()
     {
-        if (!flagsGo.GetFlag(flag))
+        if (flagsGo.Contains(flag) && !flagsGo.GetFlag(flag))
         {
             HappinessManager.EventHappened(happynessChange, energyChange);
             flagsGo.ToggleFlag(flag);
