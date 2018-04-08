@@ -41,7 +41,7 @@ public class Character : MonoBehaviour
             }
             else if(movingState == 1)
             {
-                animControl.SetBool("FacingL", true);
+                animControl.SetBool("FacingL", false);
             }
             animControl.SetInteger("WalkDir", movingState);
         }
@@ -76,6 +76,7 @@ public class Character : MonoBehaviour
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        animControl = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -87,13 +88,11 @@ public class Character : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         touchingGround = true;
-        animControl.SetTrigger("HitGround");
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         touchingGround = false;
-        animControl.SetTrigger("Jump");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
