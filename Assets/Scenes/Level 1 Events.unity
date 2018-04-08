@@ -1161,7 +1161,8 @@ MonoBehaviour:
   - SandPit
   - IceCream
   - BathroomBehindTree
-  status: 00000000000000
+  - Cows
+  status: 0000000000000000
 --- !u!114 &518477444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,12 +2223,12 @@ Prefab:
     - target: {fileID: 224465011544471172, guid: 3372ed537f5a1964d9fdc708e0c6f9c1,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 577.5
+      value: 372.5
       objectReference: {fileID: 0}
     - target: {fileID: 224465011544471172, guid: 3372ed537f5a1964d9fdc708e0c6f9c1,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 212.5
+      value: 259
       objectReference: {fileID: 0}
     - target: {fileID: 224465011544471172, guid: 3372ed537f5a1964d9fdc708e0c6f9c1,
         type: 2}
