@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 200987890}
   - component: {fileID: 200987889}
   m_Layer: 5
-  m_Name: MessagePanel
+  m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 333352369}
   - component: {fileID: 333352368}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: MessagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,6 +2964,84 @@ GameObject:
   m_PrefabParentObject: {fileID: 1053721819608964, guid: c83228d5bbd5b0548926cea1c61157fa,
     type: 2}
   m_PrefabInternal: {fileID: 1997261169}
+--- !u!1 &1434843076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1434843079}
+  - component: {fileID: 1434843078}
+  - component: {fileID: 1434843077}
+  m_Layer: 0
+  m_Name: Dialogue Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1434843077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434843076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0e0197e8affe64095c0fb2b8e82887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt,
+    ligula eu malesuada sodales, mauris mauris facilisis nisl, et sollicitudin diam
+    ex sed turpis. Suspendisse pharetra lorem sit amet pretium porttitor. Etiam semper
+    finibus sem, sit amet congue nisl vulputate ac. Nulla aliquet erat dolor, vel
+    eleifend lorem scelerisque sollicitudin. Ut posuere, erat et ornare ultrices,
+    augue metus molestie ipsum, et ultricies risus eros vitae felis. Curabitur id
+    metus vitae augue bibendum commodo id sit amet leo. Phasellus tempus vitae velit
+    at condimentum. Aenean at risus quis augue consequat iaculis vitae hendrerit dui.
+    Sed elementum sit amet eros facilisis faucibus. Etiam lacus lacus, aliquam eget
+    nibh at, maximus maximus erat. Nulla accumsan ante blandit aliquam volutpat. Cras
+    eu eros accumsan, tincidunt orci et, tempor augue. Nunc feugiat purus lorem, quis
+    varius ligula vulputate vel. Aenean a rutrum ipsum.
+--- !u!61 &1434843078
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434843076}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.13, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1434843079
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434843076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.84, y: -2.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446706726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3122,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 50785392448443746, guid: eb18a44e23914f74a9aae4707cd6fbce,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb18a44e23914f74a9aae4707cd6fbce, type: 2}
   m_IsPrefabParent: 0
@@ -3057,6 +3140,7 @@ GameObject:
   - component: {fileID: 1562244448}
   - component: {fileID: 1562244447}
   - component: {fileID: 1562244446}
+  - component: {fileID: 1562244449}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3109,6 +3193,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562244449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1562244445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf02b1f603e82fa4fadc4b63062b3ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToNextChar: 0.01
 --- !u!1001 &1671207324
 Prefab:
   m_ObjectHideFlags: 0
@@ -3247,7 +3343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  m_Text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 --- !u!222 &1775869896
 CanvasRenderer:
   m_ObjectHideFlags: 0
