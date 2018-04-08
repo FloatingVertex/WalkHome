@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EndingDialogTrigger : EventTrigger {
 
+    public EventTrigger event1;
     public EventTrigger event2;
     public EventTrigger event3;
     public EventTrigger event4;
@@ -17,7 +18,11 @@ public class EndingDialogTrigger : EventTrigger {
     public override void RunTrigger()
     {
         var hs = HappinessManager.singleton.happyness;
-        if (hs >= 4 && hs < 7)
+        if(hs < 4)
+        {
+            event1.RunTrigger();
+        }
+        else if (hs >= 4 && hs < 7)
         {
             event2.RunTrigger();
         }else if (hs < 10)
