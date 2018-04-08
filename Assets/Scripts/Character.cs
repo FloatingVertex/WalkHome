@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
         get { return fatigueLevel; }
         set { fatigueLevel = value; }
     }
+
     private int movingState = 0;
     [HideInInspector]
     public bool jump = false;
