@@ -185,6 +185,7 @@ public class PerfectFollowArea : MonoBehaviour {
             var toRemove = new List<List<PositionVelocity>>();
             foreach (var path in playerPaths)
             {
+                if (Mathf.Sign(Vector2.Dot(path[0].velocity, Vector2.right)) != Mathf.Sign(Vector2.Dot(path[path.Count - 1].velocity, Vector2.right)))
                 {
                     toRemove.Add(path);
                     Debug.Log("Removed Path");
