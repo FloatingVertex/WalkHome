@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointTrigger : MonoBehaviour
+public class CheckpointTrigger : EventTrigger
 {
     [SerializeField]
     private bool isKillBox = false;
-    private Checkpoint cpManager;
+    private CheckpointManager cpManager;
 	// Use this for initialization
 	void Start ()
     {
-        cpManager = GameObject.Find("EventSystem").GetComponent<Checkpoint>();
+        cpManager = GameObject.Find("EventSystem").GetComponent<CheckpointManager>();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public override void RunTrigger()
     {
         if (isKillBox)
         {
@@ -26,7 +21,15 @@ public class CheckpointTrigger : MonoBehaviour
         }
         else
         {
-            cpManager.RegisterCheckpoint(collision.gameObject);
+            cpManager.RegisterCheckpoint();
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            RunTrigger();
+        }
+    }
+
 }

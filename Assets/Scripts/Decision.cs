@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
-public class Decision : MonoBehaviour
+public class Decision : EventTrigger
 {
     [SerializeField]
     private string prompt = "";
 
     [SerializeField]
-    private MonoBehaviour yesOption;
-
-    [SerializeField]
-    private MonoBehaviour noOption;
-
+    private string flagName = "None";
+    
     private GameObject menu;
     private Text promptLabel;
     private Button yesButton;
     private Button noButton;
 
+    [SerializeField]
+    private UnityAction yesTrigger;
+    [SerializeField]
+    private UnityAction noTrigger;
 	// Use this for initialization
 	void Start ()
     {
@@ -28,9 +30,23 @@ public class Decision : MonoBehaviour
         noButton = GameObject.Find("NoButton").GetComponent<Button>();
     }
 
-    // Update is called once per frame
-    void Update ()
+    public override void RunTrigger()
     {
-		
-	}
+        yesButton.onClick.RemoveAllListeners();
+        noButton.onClick.RemoveAllListeners();
+        menu.SetActive(true);
+        promptLabel.text = prompt;
+        yesButton.onClick.AddListener(yesTrigger);
+        noButton.onClick.AddListener(noTrigger);
+    }
+
+    void Hide()
+    {
+        menu.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        RunTrigger();
+    }
 }
