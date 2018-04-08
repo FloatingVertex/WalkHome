@@ -14,11 +14,6 @@ public class EnergyManager : MonoBehaviour {
 
     public AnimationCurve dragVsEnergy;
     private float initialHorizontalDrag;
-    public float Energy
-    {
-        get { return energy; }
-        set { energy = value; }
-    }
 
     private void Awake()
     {
@@ -33,6 +28,11 @@ public class EnergyManager : MonoBehaviour {
     void Start () {
         initialHorizontalDrag = GetComponent<Character>().horizontalDrag;
         energyDepletionRate = 1f / timeToDepleteEnergy;
+    }
+
+    public void ChangeEnergy(float deltaEnergy)
+    {
+        energy += deltaEnergy;
     }
 
     private void FixedUpdate()
