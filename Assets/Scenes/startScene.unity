@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 1
+  sceneId2: 2
 --- !u!114 &249177955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,6 +2464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 1
+  sceneId2: 2
 --- !u!114 &1849681663
 MonoBehaviour:
   m_ObjectHideFlags: 0

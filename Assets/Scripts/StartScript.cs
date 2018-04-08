@@ -6,10 +6,13 @@ public class StartScript : MonoBehaviour
 {
     [SerializeField]
     private int sceneId = 1;
+    [SerializeField]
+    private int sceneId2 = 2;
 	
     public void StartGame()
     {
         SceneManager.LoadScene(sceneId, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneId2, LoadSceneMode.Additive);
     }
 
     public void ExitGame()
