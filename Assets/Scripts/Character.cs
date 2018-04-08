@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Character : MonoBehaviour
 {
     public static bool inCutScene = false;
+
+    public Animator animControl;
 
     [SerializeField]
     private float moveFactor = 1;
@@ -32,6 +35,15 @@ public class Character : MonoBehaviour
         set
         {
             movingState = Mathf.Clamp(value, -1, 1);
+            if(movingState == -1)
+            {
+                animControl.SetBool("FacingL", true);
+            }
+            else if(movingState == 1)
+            {
+                animControl.SetBool("FacingL", true);
+            }
+            animControl.SetInteger("WalkDir", movingState);
         }
     }
 
@@ -75,11 +87,13 @@ public class Character : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         touchingGround = true;
+        animControl.SetTrigger("HitGround");
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         touchingGround = false;
+        animControl.SetTrigger("Jump");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

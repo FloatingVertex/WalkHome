@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
     public KeyCode climbUpKey = KeyCode.W;
     public KeyCode climbDownKey = KeyCode.S;
     public KeyCode jumpKey = KeyCode.Space;
-
     private bool onJumpableService = false;
 
     private void Update()
