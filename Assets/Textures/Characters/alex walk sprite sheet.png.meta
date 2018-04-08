@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 200c95cb04fdf184294171e6205a8e62
-timeCreated: 1523220130
+guid: d3db4f1b1dc265e4dbef79ecf089b192
+timeCreated: 1523222762
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mc walking sprite_0
-    21300002: mc walking sprite_1
-    21300004: mc walking sprite_2
-    21300006: mc walking sprite_3
-    21300008: mc walking sprite_4
-    21300010: mc walking sprite_5
-    21300012: mc walking sprite_6
-    21300014: mc walking sprite_7
-    21300016: mc walking sprite_8
-    21300018: mc walking sprite_9
+    21300000: alex walk sprite sheet_0
+    21300002: alex walk sprite sheet_1
+    21300004: alex walk sprite sheet_2
+    21300006: alex walk sprite sheet_3
+    21300008: alex walk sprite sheet_4
+    21300010: alex walk sprite sheet_5
+    21300012: alex walk sprite sheet_6
+    21300014: alex walk sprite sheet_7
+    21300016: alex walk sprite sheet_8
+    21300018: alex walk sprite sheet_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mc walking sprite_0
+      name: alex walk sprite sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,7 +111,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_1
+      name: alex walk sprite sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -125,7 +125,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_2
+      name: alex walk sprite sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -139,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_3
+      name: alex walk sprite sheet_3
       rect:
         serializedVersion: 2
         x: 96
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_4
+      name: alex walk sprite sheet_4
       rect:
         serializedVersion: 2
         x: 128
@@ -167,7 +167,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_5
+      name: alex walk sprite sheet_5
       rect:
         serializedVersion: 2
         x: 160
@@ -181,7 +181,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_6
+      name: alex walk sprite sheet_6
       rect:
         serializedVersion: 2
         x: 192
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_7
+      name: alex walk sprite sheet_7
       rect:
         serializedVersion: 2
         x: 224
@@ -209,7 +209,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_8
+      name: alex walk sprite sheet_8
       rect:
         serializedVersion: 2
         x: 256
@@ -223,7 +223,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mc walking sprite_9
+      name: alex walk sprite sheet_9
       rect:
         serializedVersion: 2
         x: 288
