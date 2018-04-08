@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BouncyPlatform : MonoBehaviour
 {
+    private AudioSource source;
+
     [SerializeField]
     private float launchForce = 10;
     // Use this for initialization
     void Start()
     {
-
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class BouncyPlatform : MonoBehaviour
             if (Vector2.Dot(collision.contacts[0].normal, Vector2.down) > 0)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, launchForce));
+                source.Play();
             }
         }
     }

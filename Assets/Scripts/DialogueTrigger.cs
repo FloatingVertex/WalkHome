@@ -26,7 +26,5 @@ public class DialogueTrigger : EventTrigger
         {
             manager.CreateMessage(msg);
         }
-        CheckpointManager.GetManager().RegisterObject(gameObject);
-        gameObject.SetActive(false);
     }
 }

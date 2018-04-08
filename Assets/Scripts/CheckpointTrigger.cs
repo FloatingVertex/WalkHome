@@ -7,6 +7,8 @@ public class CheckpointTrigger : EventTrigger
     [SerializeField]
     private bool killPlayer = false;
     private CheckpointManager cpManager;
+    [SerializeField]
+    private EventTrigger nextEvent;
 	// Use this for initialization
 	void Start ()
     {
@@ -22,6 +24,10 @@ public class CheckpointTrigger : EventTrigger
         else
         {
             cpManager.RegisterCheckpoint();
+        }
+        if(nextEvent != null)
+        {
+            nextEvent.RunTrigger();
         }
     }
 }
