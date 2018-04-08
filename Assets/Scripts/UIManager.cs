@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Message struct for use with the UIManager
+[System.Serializable]
 public struct Message
 {
     public string text;
-    public bool requiresConfirmation;
+    public bool hasDecision;
+    public Decision choice;
     public Message(string txt)
     {
         text = txt;
-        requiresConfirmation = true;
+        hasDecision = false;
+        choice = null;
+    }
+    public Message(string txt, Decision chc)
+    {
+        text = txt;
+        hasDecision = true;
+        choice = chc;
     }
 }
 
 public class UIManager : MonoBehaviour
 {
-
 
     private bool displayingMessage = true;
     public Message currentMsg = new Message("Test");
@@ -42,6 +50,7 @@ public class UIManager : MonoBehaviour
         panel.SetActive(false);
         bool active = panel.activeInHierarchy;
         IsDisplaying = false;
+        
     }
 	
 	// Update is called once per frame
@@ -93,17 +102,19 @@ public class UIManager : MonoBehaviour
     public void CreateMessage(Message msg)
     {
         // if the message is too long, split it up
-        if (msg.text.Length > 120)
+        if (msg.text.Length > 125)
         {
+            // variables to track how much of the string's total length has been allocated into different messages, as well as iteration count for limiting purposes
             int totalLength = msg.text.Length;
             int allocated = 0;
             int iterations = 0;
+
+            // Loop through until the whole message has been taken care of
             while (allocated < totalLength && iterations < 50)
             {
                 // grab the max chars allowable as a chunk
                 string tempStr = msg.text.Substring(allocated, Mathf.Min(125, (totalLength - allocated)));
 
-                // Split up into individual words, and cut the last one off for the next message
                 if (tempStr.Length < 125)
                 {
                     Message addMessage = new Message(tempStr);
@@ -112,11 +123,27 @@ public class UIManager : MonoBehaviour
                 }
                 else
                 {
+                    // Split up into individual words, and cut the last one off for the next message to be short enough
                     string[] words = tempStr.Split(' ');
+
+                    // find the overflow point
+                    int i = -1;
+                    int charCount = 0;
+                    do
+                    {
+                        i++;
+                        charCount += words[i].Length + 1; // extra 1 accounts for the space
+                    }
+                    while (charCount < 125);
                     int indexOfNext;
-
-                    indexOfNext = tempStr.IndexOf(words[words.Length - 2]);
-
+                    if (i == words.Length - 1)
+                    {
+                        indexOfNext = tempStr.IndexOf(words[i]);
+                    }
+                    else
+                    {
+                        indexOfNext = tempStr.IndexOf(words[i] + " ");
+                    }
                     Message addMessage = new Message(tempStr.Substring(0, indexOfNext - 1));
                     msgQueue.Enqueue(addMessage);
 

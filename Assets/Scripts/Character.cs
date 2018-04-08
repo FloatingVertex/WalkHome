@@ -19,8 +19,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float jumpForce = .1f;
 
-    [SerializeField]
-    private string groundTag = "TileMap";
+    //[SerializeField]
+    //private string groundTag = "TileMap";
 
     private int movingState = 0;
     [HideInInspector]

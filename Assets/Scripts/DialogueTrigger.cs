@@ -5,28 +5,27 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField]
-    [TextArea]
-    private string line = "Test!";
+    private string layerTag;
 
     [SerializeField]
-    List<Message> msg = new List<Message>();
+    [TextArea(3,12)]
+    private string line = "Test!";
+
+    private Message msg;
+
     UIManager manager;
 	// Use this for initialization
 	void Start ()
     {
         manager = GameObject.Find("EventSystem").GetComponent<UIManager>();
-        msg.Add(new Message(line));
+        msg = new Message(line);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == LayerMask.NameToLayer(layerTag))
         {
-            foreach(Message tmp in msg)
-            {
-                manager.CreateMessage(tmp);
-            }
-            gameObject.SetActive(false);
+                manager.CreateMessage(msg);
         }
     }
 }
