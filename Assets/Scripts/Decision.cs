@@ -18,9 +18,9 @@ public class Decision : EventTrigger
     private Button noButton;
 
     [SerializeField]
-    private UnityAction yesTrigger;
+    private EventTrigger yesTrigger;
     [SerializeField]
-    private UnityAction noTrigger;
+    private EventTrigger noTrigger;
 	// Use this for initialization
 	void Start ()
     {
@@ -36,8 +36,8 @@ public class Decision : EventTrigger
         noButton.onClick.RemoveAllListeners();
         menu.SetActive(true);
         promptLabel.text = prompt;
-        yesButton.onClick.AddListener(yesTrigger);
-        noButton.onClick.AddListener(noTrigger);
+        yesButton.onClick.AddListener(yesTrigger.RunTrigger);
+        noButton.onClick.AddListener(noTrigger.RunTrigger);
     }
 
     void Hide()

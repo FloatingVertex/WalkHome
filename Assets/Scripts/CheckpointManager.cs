@@ -19,6 +19,7 @@ public class CheckpointManager : MonoBehaviour
     public void ResetToCheckPoint()
     {
         player.transform.position = currentCheckpoint;
+        kid.transform.position = currentCheckpoint;
         foreach(GameObject obj in objectsToReset)
         {
             obj.SetActive(!obj.activeInHierarchy);
