@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: test_ground
+  m_Name: grass top
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 6fbd391307360a54ba203de6b559fe9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99c12ddb10d41594da2ee6e0f48939de, type: 3}
   m_Color: {r: 0.20344941, g: 0.52205884, b: 0.25838208, a: 1}
   m_Transform:
     e00: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 2
+  m_ColliderType: 0
