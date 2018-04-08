@@ -13,6 +13,9 @@ public class AiController : MonoBehaviour
     [SerializeField]
     private string groundTag = "TileMap";
 
+    public int pathIndex = -1;
+    public int positionIndex = -1;
+
     private Vector2 distance = Vector2.zero;
 
     private Character charBody = null;

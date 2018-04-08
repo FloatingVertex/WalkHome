@@ -5,9 +5,9 @@ using UnityEngine;
 public struct PositionVelocity
 {
     public Vector3 position;
-    public Vector3 velocity;
+    public Vector2 velocity;
 
-    public PositionVelocity(Vector3 position,Vector3 velocity)
+    public PositionVelocity(Vector3 position,Vector2 velocity)
     {
         this.position = position;
         this.velocity = velocity;
@@ -17,6 +17,8 @@ public struct PositionVelocity
 public class PerfectFollowArea : MonoBehaviour {
 
     private float snapDistance = 0.2f;
+
+    private int overlapNum = 0;
 
     private List<List<PositionVelocity>> playerPaths = new List<List<PositionVelocity>>();
     private List<PositionVelocity> CurrentPath
@@ -36,6 +38,7 @@ public class PerfectFollowArea : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        overlapNum += 1;
         if (collision.GetComponent<PlayerController>())
         {
             var currentPath = new List<PositionVelocity>();
@@ -46,7 +49,7 @@ public class PerfectFollowArea : MonoBehaviour {
 
     private void DrawDebugCrossHair(Vector3 position, Color color, float size = 0.5f, float durration = 0.1f)
     {
-        Debug.DrawLine(position + Vector3.down * size * .5f, position + Vector3.up * size * .5f, color, durration);
+        //Debug.DrawLine(position + Vector3.down * size * .5f, position + Vector3.up * size * .5f, color, durration);
         Debug.DrawLine(position + Vector3.left * size * .5f, position + Vector3.right * size * .5f, color, durration);
     }
 
@@ -67,32 +70,59 @@ public class PerfectFollowArea : MonoBehaviour {
         }
         if (collision.GetComponent<AiController>())
         {
-            SetToNextPosition(collision, false);
+            SetToNextPosition(collision, true);
         }
     }
 
     private void SetToNextPosition(Collider2D collision,bool setVelocity)
     {
-        int pathIndex = 0;
-        int positionIndex = 0;
-        if (GetClosestPosition(collision.transform.position, snapDistance, out pathIndex, out positionIndex))
+        int pathIndex = -1;
+        int positionIndex = -1;
+        if (collision.GetComponent<AiController>().pathIndex >= 0)
         {
-            collision.GetComponent<Character>().tempMoveSpeedMultiple = 0f;
-            collision.GetComponent<Character>().tempJumpForceMultiple = 0f;
-            if (playerPaths[pathIndex].Count > positionIndex + 1)
+            pathIndex = collision.GetComponent<AiController>().pathIndex;
+            if (collision.GetComponent<AiController>().positionIndex + 1 < playerPaths[pathIndex].Count)
             {
-                positionIndex += 1;
+                collision.GetComponent<AiController>().positionIndex += 1;
+                positionIndex = collision.GetComponent<AiController>().positionIndex;
             }
+            else
+            {
+                pathIndex = -1;
+                positionIndex = -1;
+            }
+        }
+        else
+        {
+            if (GetClosestPosition(collision.transform.position, snapDistance, out pathIndex, out positionIndex))
+            {
+                collision.GetComponent<Character>().tempMoveSpeedMultiple = 0f;
+                collision.GetComponent<Character>().tempJumpForceMultiple = 0f;
+                if (playerPaths[pathIndex].Count > positionIndex + 1)
+                {
+                    positionIndex += 1;
+                }
+                collision.GetComponent<AiController>().pathIndex = pathIndex;
+                collision.GetComponent<AiController>().positionIndex = positionIndex;
+            }
+            else
+            {
+                pathIndex = -1;
+                positionIndex = -1;
+            }
+        }
+        if (pathIndex >= 0)
+        {
             var values = playerPaths[pathIndex][positionIndex];
             collision.transform.position = values.position;
-            Debug.Log("AI position set, pathID: "+pathIndex+" positionID: " +positionIndex + " Path length: " + playerPaths[pathIndex].Count);
+            //Debug.Log("AI position set, pathID: " + pathIndex + " positionID: " + positionIndex + " Path length: " + playerPaths[pathIndex].Count);
             if (setVelocity)
             {
                 collision.GetComponent<Rigidbody2D>().velocity = values.velocity;
             }
             else
             {
-                collision.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
     }
@@ -116,7 +146,7 @@ public class PerfectFollowArea : MonoBehaviour {
             {
                 var pathPosition = path[path.Count - 1 - positionI].position;
                 float diffSqr = (position - pathPosition).sqrMagnitude;
-                if (smallestDiffSqr * 0.9f > diffSqr && maxDistanceSqr > diffSqr)
+                if (smallestDiffSqr - smallestDiffSqr * .5f > diffSqr && maxDistanceSqr > diffSqr)
                 {
                     pathIndex = playerPaths.Count - 1 - pathI;
                     positionIndex = path.Count - 1 - positionI;
@@ -134,6 +164,7 @@ public class PerfectFollowArea : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        overlapNum -= 1;
         if (collision.GetComponent<PlayerController>())
         {
             AddPosition(collision);
@@ -146,6 +177,24 @@ public class PerfectFollowArea : MonoBehaviour {
         {
             collision.GetComponent<Character>().tempMoveSpeedMultiple = 1f;
             collision.GetComponent<Character>().tempJumpForceMultiple = 1f;
+            collision.GetComponent<AiController>().pathIndex = -1;
+            collision.GetComponent<AiController>().positionIndex = -1;
+        }
+        if (overlapNum == 0)
+        {
+            var toRemove = new List<List<PositionVelocity>>();
+            foreach (var path in playerPaths)
+            {
+                if (Mathf.Sign(Vector2.Dot(path[0].velocity, Vector2.right)) != Mathf.Sign(Vector2.Dot(path[path.Count - 1].velocity, Vector2.right)))
+                {
+                    toRemove.Add(path);
+                    Debug.Log("Removed Path");
+                }
+            }
+            foreach(var path in toRemove)
+            {
+                playerPaths.Remove(path);
+            }
         }
     }
 }
